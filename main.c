@@ -3,19 +3,18 @@
 //  sykesmp4
 
 #include <stdio.h>
-#define NUM_GRADES 3
 
 int main()
 {
     int numberOfStudents;
-    int grades[NUM_GRADES];
+    int grade1, grade2, grade3;
     int id[30] = {0};
     int average[30];
     char myName[20];
     int classTotal = 0;
     int totalGrades;
     int classAverage;
-    int x, y;
+    int x;
     int sum = 0;
     char c;
     
@@ -38,35 +37,53 @@ int main()
     {
         do
         {
-            printf ("\nEnter ID for student #%i (0-9999): ", x);
+            printf ("\nEnter the ID number for student #%i (0-9999): ", x);
             scanf ("%i", &id[x]);
             while ((c = getchar() != '\n') && c != EOF);
             
             if (id[x] < 0 || id[x] > 9999)
                 printf ("Bad ID number. Please re-enter.\n\n");
         } while (id[x] < 0 || id[x] > 9999);
-        
-            printf ("\nNow enter the 3 grades to be averaged\n\n");
-        
-        for (y = 0; y < NUM_GRADES; y++)
+       
+        printf ("\nNow enter the 3 grades to be averaged\n\n");
+    
+        do
         {
-            do
-            {
-                printf ("Enter grade #%i: ", y+1);
-                scanf("%i", &grades[y]);
-                while ((c = getchar() != '\n') && c != EOF);
+            printf ("Enter grade #1: ");
+            scanf("%i", &grade1);
+            while ((c = getchar() != '\n') && c != EOF);
                 
-                if (grades[y] < 0 || grades[y] > 100)
-                    printf("***Invalid Entry. Grade must be from 0 to 100.\n***");
-            } while (grades[y] < 0 || grades[y] > 100);
-            sum = sum + grades[y];
-            average[x] = sum / 3;
-        }
+            if (grade1 < 0 || grade1 > 100)
+                printf("***Invalid Entry. Grade must be from 0 to 100.***\n");
+        } while (grade1 < 0 || grade1 > 100);
         
-        classTotal = classTotal + sum;
-        totalGrades = numberOfStudents * 3;
-        classAverage = classTotal / totalGrades;
+        do
+        {
+            printf ("Enter grade #2: ");
+            scanf("%i", &grade2);
+            while ((c = getchar() != '\n') && c != EOF);
+                
+            if (grade2 < 0 || grade2 > 100)
+                printf("***Invalid Entry. Grade must be from 0 to 100.***\n");
+        } while (grade2 < 0 || grade2 > 100);
+        
+        do
+        {
+            printf ("Enter grade #3: ");
+            scanf("%i", &grade3);
+            while ((c = getchar() != '\n') && c != EOF);
+                
+            if (grade3 < 0 || grade3 > 100)
+                printf("***Invalid Entry. Grade must be from 0 to 100.***\n");
+        } while (grade3 < 0 || grade3 > 100);
+        
+            sum = grade1 + grade2 + grade3;
+            average[x] = sum / 3;
+            classTotal = classTotal + sum;
+            totalGrades = numberOfStudents * 3;
+            classAverage = classTotal / totalGrades;
     }
+
     printf("\n\nClass report for %s\n\n", myName);
     
         printf("ID No.        Avg.          Grade\n");
