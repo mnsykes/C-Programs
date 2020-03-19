@@ -3,18 +3,19 @@
 //  sykesmp4
 
 #include <stdio.h>
+#define NUM_GRADES 3
 
 int main()
 {
     int numberOfStudents;
-    int grade1, grade2, grade3;
+    int grades[NUM_GRADES];
     int id[30] = {0};
     int average[30];
     char myName[20];
     int classTotal = 0;
     int totalGrades;
     int classAverage;
-    int x;
+    int x, y;
     int sum = 0;
     char c;
     
@@ -47,41 +48,24 @@ int main()
        
         printf ("\nNow enter the 3 grades to be averaged\n\n");
     
-        do
+        for (y = 0; y < NUM_GRADES; y++)
         {
-            printf ("Enter grade #1: ");
-            scanf("%i", &grade1);
-            while ((c = getchar() != '\n') && c != EOF);
+            do
+            {
+                printf ("Enter grade #%i: ", y+1);
+                scanf("%i", &grades[y]);
+                while ((c = getchar() != '\n') && c != EOF);
                 
-            if (grade1 < 0 || grade1 > 100)
-                printf("***Invalid Entry. Grade must be from 0 to 100.***\n");
-        } while (grade1 < 0 || grade1 > 100);
-        
-        do
-        {
-            printf ("Enter grade #2: ");
-            scanf("%i", &grade2);
-            while ((c = getchar() != '\n') && c != EOF);
-                
-            if (grade2 < 0 || grade2 > 100)
-                printf("***Invalid Entry. Grade must be from 0 to 100.***\n");
-        } while (grade2 < 0 || grade2 > 100);
-        
-        do
-        {
-            printf ("Enter grade #3: ");
-            scanf("%i", &grade3);
-            while ((c = getchar() != '\n') && c != EOF);
-                
-            if (grade3 < 0 || grade3 > 100)
-                printf("***Invalid Entry. Grade must be from 0 to 100.***\n");
-        } while (grade3 < 0 || grade3 > 100);
-        
-            sum = grade1 + grade2 + grade3;
+                if (grades[y] < 0 || grades[y] > 100)
+                    printf("***Invalid Entry. Grade must be from 0 to 100.***\n");
+            } while (grades[y] < 0 || grades[y] > 100);
+            
+            sum = sum + grades[y];
             average[x] = sum / 3;
             classTotal = classTotal + sum;
             totalGrades = numberOfStudents * 3;
             classAverage = classTotal / totalGrades;
+        }
     }
 
     printf("\n\nClass report for %s\n\n", myName);
@@ -89,27 +73,27 @@ int main()
         printf("ID No.        Avg.          Grade\n");
     for (x = 1; x <= numberOfStudents; x++)
         if (average[x] >= 94 && average[x] <= 100)
-            printf("%i            %i             A\n\n", id[x], average[x]);
+            printf("%04i            %i             A\n\n", id[x], average[x]);
         else if (average[x] >= 90 && average[x] <= 93)
-            printf("%i            %i             A-\n\n", id[x], average[x]);
+            printf("%04i            %i             A-\n\n", id[x], average[x]);
         else if (average[x] >= 87 && average[x] <= 89)
-            printf("%i            %i             B+\n\n", id[x], average[x]);
+            printf("%04i            %i             B+\n\n", id[x], average[x]);
         else if (average[x] >= 84 && average[x] <= 86)
-            printf("%i            %i             B\n\n", id[x], average[x]);
+            printf("%04i            %i             B\n\n", id[x], average[x]);
         else if (average[x] >= 80 && average[x] <= 83)
-            printf("%i            %i             B-\n\n", id[x], average[x]);
+            printf("%04i            %i             B-\n\n", id[x], average[x]);
         else if (average[x] >= 77 && average[x] <= 79)
-            printf("%i            %i             C+\n\n", id[x], average[x]);
+            printf("%04i            %i             C+\n\n", id[x], average[x]);
         else if (average[x] >= 74 && average[x] <= 76)
-            printf("%i            %i             C\n\n", id[x], average[x]);
+            printf("%04i            %i             C\n\n", id[x], average[x]);
         else if (average[x] >= 70 && average[x] <= 73)
-            printf("%i            %i             C-\n\n", id[x], average[x]);
+            printf("%04i            %i             C-\n\n", id[x], average[x]);
         else if (average[x] >= 67 && average[x] <= 69)
-            printf("%i            %i             D+\n\n", id[x], average[x]);
+            printf("%04i            %i             D+\n\n", id[x], average[x]);
         else if (average[x] >= 64 && average[x] <= 66)
-            printf("%i            %i             D\n\n", id[x], average[x]);
+            printf("%04i            %i             D\n\n", id[x], average[x]);
         else if (average[x] < 64)
-            printf("%i            %i             F\n\n", id[x], average[x]);
+            printf("%04i            %i             F\n\n", id[x], average[x]);
     
         
     
