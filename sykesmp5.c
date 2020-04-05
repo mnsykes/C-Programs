@@ -29,7 +29,7 @@ int main()
     int  numberOfStudents;               /* user can enter up to 30 student */
     int  grades[NUM_GRADES];             /* holds 3 integer grades */
     int  id[30] = {0};                   /* holds up to 30 student ids */
-    int  average[30];                    /* stores averages rounded up */
+    int  average[];                    /* stores averages rounded up */
     char myName[20];                     /* stores up to 20 characters for school name */
     int  classTotal = 0;                 /* accumulated grades for all students */
     int  totalGrades;                    /* total number of grade scores entered */
@@ -38,15 +38,16 @@ int main()
     int  sum;                            /* sum of grades for each student */
     char c;                              /* buffer clearing */
     
-    /* prompt user to enter name of school*/
+    /* function to prompt user to enter name of school*/
     getMyName(myName);
     
-    /* trap loop to validate number of students */
+    /* function with trap loop to validate number of students */
     numberOfStudents = getStudents(numberOfStudents);
     
     /* loop runs until number of students user entered is met */
     for (x = 1; x <= numberOfStudents; x++)
-    {
+    {	
+    	/* function to prompt user to enter id and loop to validate */
         getId(x, id);
         
         printf ("\nNow enter the 3 grades to be averaged\n\n");
@@ -54,7 +55,7 @@ int main()
         /* loop with symbolic constant */
         for (y = 0; y < NUM_GRADES; y++)
         {
-            /* trap loop to validate grades */
+            /* function for user to input grades and trap loop to validate grades */
             getGrades(y, grades);
             
             /* calculations for sum of grades and average per student */
@@ -72,7 +73,7 @@ int main()
     printf("\n\nClass report for %s\n\n", myName);
     
     printf("ID No.        Avg.          Grade\n");
-    /* loop to output info stored in arrays */
+    /* function to output grade report and loop to output info stored in arrays */
    getGradeReport(average, id, numberOfStudents);
     
         
@@ -84,6 +85,8 @@ int main()
 
   /* functions */
   /* --------- */
+  
+/* function for user to input the name of their school */
 void getMyName(char schoolName[])
 {
     char c;
@@ -95,6 +98,8 @@ void getMyName(char schoolName[])
     printf ("\nWelcome to the %s Grade Calculator\n\n", schoolName);
 } /* end function */
 
+
+/* function for user to enter number of students and loop to validate entry*/
 int getStudents(numStudents)
 {
 	char c;
@@ -106,10 +111,12 @@ int getStudents(numStudents)
         
         if (numStudents < 0 || numStudents > 30)
                     printf("\n***Invalid number of students entered.***\n\n");
-        return numStudents;
+        else return numStudents;
      } while (numStudents < 0 || numStudents > 30); /* end do loop */
 } /* end function */
 
+
+/* function for user to enter id and loop to validate entry */
 void getId(int x, int id[])
 {
 	char c; 
@@ -125,6 +132,8 @@ void getId(int x, int id[])
      } while (id[x] < 0 || id[x] > 9999); /* end do loop */
 } /* end function */
 
+
+/* function for user to enter grades and loop to validate entry */
 void getGrades(int y, int grades[])
 {
 	char c;
@@ -140,6 +149,8 @@ void getGrades(int y, int grades[])
     } while (grades[y] < 0 || grades[y] > 100); /* end do loop */
 } /* end function */
 
+
+/* function to output grade report from all user inputs */
 void getGradeReport(int average[], int id[], int numberOfStudents)
 {
 	int x; 
